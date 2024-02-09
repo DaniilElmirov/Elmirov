@@ -1,3 +1,5 @@
 <resources>
 	<string name="app_name">TinkoffTestTask</string>
+
+	<string name="popular">Популярное</string>
 </resources>
