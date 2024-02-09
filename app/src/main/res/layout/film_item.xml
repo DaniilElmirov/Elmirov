@@ -48,12 +48,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_16"
+            android:contentDescription="@null"
             android:src="@drawable/ic_favourite"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/name"
-            tools:visibility="visible"
-            android:contentDescription="@null"/>
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
