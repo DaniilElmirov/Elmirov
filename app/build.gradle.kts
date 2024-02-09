@@ -2,6 +2,7 @@
 plugins {
 	alias(libs.plugins.androidApplication)
 	alias(libs.plugins.kotlinAndroid)
+	alias(libs.plugins.ksp)
 }
 
 android {
@@ -39,7 +40,13 @@ dependencies {
 	implementation(libs.appcompat)
 	implementation(libs.material)
 	implementation(libs.constraintlayout)
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.test.ext.junit)
-	androidTestImplementation(libs.espresso.core)
+
+	implementation(libs.cicerone)
+
+	implementation(libs.dagger.core)
+	ksp(libs.dagger.compiler)
+
+	implementation(libs.bundles.lifecycle)
+	implementation(libs.bundles.retrofit)
+	implementation(libs.bundles.coroutines)
 }
