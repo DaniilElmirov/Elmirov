@@ -52,6 +52,8 @@ dependencies {
 
 	implementation(libs.coil)
 
+	implementation(libs.paging)
+
 	implementation(libs.bundles.lifecycle)
 	implementation(libs.bundles.retrofit)
 	implementation(libs.bundles.coroutines)
