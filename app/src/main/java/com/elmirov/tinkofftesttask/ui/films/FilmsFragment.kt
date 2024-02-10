@@ -17,7 +17,7 @@ import com.elmirov.tinkofftesttask.domain.entity.Film
 import com.elmirov.tinkofftesttask.presentation.ViewModelFactory
 import com.elmirov.tinkofftesttask.presentation.films.FilmsState
 import com.elmirov.tinkofftesttask.presentation.films.FilmsViewModel
-import com.elmirov.tinkofftesttask.ui.films.adapter.FilmAdapter
+import com.elmirov.tinkofftesttask.ui.films.adapter.FilmsAdapter
 import com.elmirov.tinkofftesttask.util.collectLifecycleFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,6 +41,17 @@ class FilmsFragment : Fragment() {
 
     private val component by lazy {
         (requireActivity().application as TestTaskApplication).component
+    }
+
+    private val filmsAdapter by lazy {
+        FilmsAdapter(
+            onClick = {
+                viewModel.openInfo(it.id)
+            },
+            onLongClickListener = {
+                Log.d("onLongClickListener", it.name)
+            },
+        )
     }
 
     override fun onAttach(context: Context) {
@@ -80,39 +91,44 @@ class FilmsFragment : Fragment() {
             when (state) {
                 FilmsState.Initial -> Unit
                 FilmsState.Loading -> showLoading()
-                is FilmsState.Content -> showContent(state.content)
+                is FilmsState.Content -> {
+                    setupAdapter(state.content)
+                    showContent()
+                }
+
                 is FilmsState.Error -> showError()
             }
         }
     }
 
     private fun showLoading() {
-        binding.films.isVisible = false
-        binding.error.isVisible = false
-        binding.progressBar.isVisible = true
+        binding.apply {
+            contentContainer.isVisible = false
+            error.isVisible = false
+            progressBar.isVisible = true
+        }
     }
 
-    private fun showContent(content: PagingData<Film>) {
-        val filmAdapter = FilmAdapter(
-            onClick = {
-                viewModel.openInfo(it?.id ?: 301)
-            },
-            onLongClickListener = {
-                Log.d("TAGTAG", "${it?.name} long")
-            }
-        )
-        binding.films.adapter = filmAdapter
+    private fun setupAdapter(content: PagingData<Film>) {
+        binding.contentContainer.adapter = filmsAdapter
         viewLifecycleOwner.lifecycleScope.launch {
-            filmAdapter.submitData(content)
+            filmsAdapter.submitData(content)
         }
-        binding.error.isVisible = false
-        binding.films.isVisible = true
-        binding.progressBar.isVisible = false
+    }
+
+    private fun showContent() {
+        binding.apply {
+            error.isVisible = false
+            contentContainer.isVisible = true
+            progressBar.isVisible = false
+        }
     }
 
     private fun showError() {
-        binding.progressBar.isVisible = false
-        binding.error.isVisible = true
-        binding.films.isVisible = false
+        binding.apply {
+            contentContainer.isVisible = false
+            progressBar.isVisible = false
+            error.isVisible = true
+        }
     }
 }

@@ -13,7 +13,7 @@
         app:title="@string/popular" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/films"
+        android:id="@+id/content_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
