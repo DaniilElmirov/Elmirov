@@ -5,6 +5,7 @@ import com.elmirov.tinkofftesttask.MainActivity
 import com.elmirov.tinkofftesttask.TestTaskApplication
 import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
 import com.elmirov.tinkofftesttask.di.module.DataModule
+import com.elmirov.tinkofftesttask.di.module.ViewModelModule
 import com.elmirov.tinkofftesttask.ui.films.FilmsFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -13,6 +14,7 @@ import dagger.Component
 @Component(
     modules = [
         DataModule::class,
+        ViewModelModule::class,
     ]
 )
 interface ApplicationComponent {
