@@ -11,7 +11,7 @@ class KinopoiskPagingSource @Inject constructor(
 ) : PagingSource<Int, Film>() {
 
     private companion object {
-        private const val DEFAULT_PAGE = 1
+        private const val INITIAL_PAGE = 1
     }
 
     override fun getRefreshKey(state: PagingState<Int, Film>): Int? {
@@ -22,14 +22,14 @@ class KinopoiskPagingSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Film> {
 
-        val page = params.key ?: DEFAULT_PAGE
+        val page = params.key ?: INITIAL_PAGE
 
         val response = api.getFilms(page)
         val lastPage = response.lastPage
 
         return if (response.films.isNotEmpty()) {
             val films = response.toEntity()
-            val prevKey = if (page == DEFAULT_PAGE) null else page - 1
+            val prevKey = if (page == INITIAL_PAGE) null else page - 1
             val nextKey = if (page == lastPage) null else page + 1
             LoadResult.Page(films, prevKey, nextKey)
         } else {

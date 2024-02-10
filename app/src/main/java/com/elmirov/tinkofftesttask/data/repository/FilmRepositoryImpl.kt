@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.elmirov.tinkofftesttask.data.mapper.toEntity
-import com.elmirov.tinkofftesttask.data.network.api.KinopoiskPagingSource
 import com.elmirov.tinkofftesttask.data.network.api.KinopoiskApi
+import com.elmirov.tinkofftesttask.data.network.api.KinopoiskPagingSource
 import com.elmirov.tinkofftesttask.domain.entity.Film
 import com.elmirov.tinkofftesttask.domain.repository.FilmRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +18,7 @@ class FilmRepositoryImpl @Inject constructor(
         api.getById(id).toEntity()
 
     override suspend fun getList(): Flow<PagingData<Film>> = Pager(
-        config = PagingConfig(20),
+        config = PagingConfig(pageSize = KinopoiskApi.MAX_PAGE_SIZE),
         pagingSourceFactory = {
             KinopoiskPagingSource(api)
         }

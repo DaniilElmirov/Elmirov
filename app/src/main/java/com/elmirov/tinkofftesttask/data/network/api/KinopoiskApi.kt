@@ -8,6 +8,10 @@ import retrofit2.http.Query
 
 interface KinopoiskApi {
 
+    companion object {
+        const val MAX_PAGE_SIZE = 20
+    }
+
     @GET("api/v2.2/films/{id}")
     suspend fun getById(
         @Path("id") id: Int,
