@@ -7,6 +7,7 @@ import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
 import com.elmirov.tinkofftesttask.di.module.DataModule
 import com.elmirov.tinkofftesttask.di.module.ViewModelModule
 import com.elmirov.tinkofftesttask.ui.films.FilmsFragment
+import com.elmirov.tinkofftesttask.ui.info.FilmInfoFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -24,6 +25,8 @@ interface ApplicationComponent {
     fun inject(activity: MainActivity)
 
     fun inject(fragment: FilmsFragment)
+
+    fun inject(fragment: FilmInfoFragment)
 
     @Component.Factory
     interface Factory {
