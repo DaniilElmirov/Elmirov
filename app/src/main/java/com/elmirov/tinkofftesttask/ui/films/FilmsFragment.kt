@@ -96,7 +96,7 @@ class FilmsFragment : Fragment() {
 
         val filmAdapter = FilmAdapter(
             onClick = {
-                Log.d("TAGTAG", it.name)
+                viewModel.openInfo(it.id)
             },
             onLongClickListener = {
                 Log.d("TAGTAG", "${it.name} long")

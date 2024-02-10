@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class FilmInfoViewModel @Inject constructor(
     private val getFilmByIdUseCase: GetFilmByIdUseCase,
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow<FilmInfoState>(FilmInfoState.Initial)
     val state = _state.asStateFlow()
@@ -21,7 +21,7 @@ class FilmInfoViewModel @Inject constructor(
         _state.value = FilmInfoState.Error(ErrorType.INTERNET)
     }
 
-    fun loadFilm(id: Int) {
+    fun getFilmInfo(id: Int) {
         viewModelScope.launch(handler) {
             _state.value = FilmInfoState.Loading
 
