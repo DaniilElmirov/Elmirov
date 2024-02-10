@@ -3,6 +3,7 @@ package com.elmirov.tinkofftesttask.presentation.films
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elmirov.tinkofftesttask.domain.usecase.GetFilmsUseCase
+import com.elmirov.tinkofftesttask.presentation.ErrorType
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

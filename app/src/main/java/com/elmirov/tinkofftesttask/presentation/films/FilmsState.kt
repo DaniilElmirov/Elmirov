@@ -1,6 +1,7 @@
 package com.elmirov.tinkofftesttask.presentation.films
 
 import com.elmirov.tinkofftesttask.domain.entity.Film
+import com.elmirov.tinkofftesttask.presentation.ErrorType
 
 sealed interface FilmsState {
 
@@ -16,8 +17,3 @@ sealed interface FilmsState {
         val content: List<Film>,
     ) : FilmsState
 }
-
-enum class ErrorType {
-    INTERNET
-}
-
