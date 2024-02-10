@@ -27,12 +27,11 @@ class FilmInfoFragment : Fragment() {
 
         private const val FILM_ID = "film_id"
 
-        fun newInstance(id: Int): FilmInfoFragment = FilmInfoFragment()
-            .apply {
-                arguments = Bundle().apply {
-                    putInt(FILM_ID, id)
-                }
+        fun newInstance(id: Int): FilmInfoFragment = FilmInfoFragment().apply {
+            arguments = Bundle().apply {
+                putInt(FILM_ID, id)
             }
+        }
     }
 
     private var _binding: FragmentFilmInfoBinding? = null
@@ -100,35 +99,42 @@ class FilmInfoFragment : Fragment() {
     }
 
     private fun showLoading() {
-        binding.film.isVisible = false
-        binding.error.isVisible = false
-        binding.progressBar.isVisible = true
+        binding.apply {
+            contentContainer.isVisible = false
+            error.isVisible = false
+            progressBar.isVisible = true
+        }
     }
 
     private fun showContent(content: Film) {
-        setPosterRightSize()
-        binding.progressBar.isVisible = false
-        binding.error.isVisible = false
+        setupGuideline()
 
-        binding.film.isVisible = true
-        binding.poster.load(content.posterUrl)
-        binding.name.text = content.name
-        binding.description.text = content.description
-        binding.genres.text =
-            String.format(getString(R.string.genres), content.genres.joinToString(", "))
-        binding.countries.text =
-            String.format(getString(R.string.countries), content.countries.joinToString(", "))
+        binding.apply {
+            progressBar.isVisible = false
+            error.isVisible = false
+            contentContainer.isVisible = true
+
+            poster.load(content.posterUrl)
+            name.text = content.name
+            description.text = content.description
+            genres.text =
+                String.format(getString(R.string.genres), content.genres.joinToString(", "))
+            countries.text =
+                String.format(getString(R.string.countries), content.countries.joinToString(", "))
+        }
     }
 
     private fun showError() {
-        binding.progressBar.isVisible = false
-        binding.error.isVisible = true
-        binding.film.isVisible = false
+        binding.apply {
+            progressBar.isVisible = false
+            error.isVisible = true
+            contentContainer.isVisible = false
+        }
     }
 
-    private fun setPosterRightSize() {
+    private fun setupGuideline() {
         val currentScreenSize = Resources.getSystem().displayMetrics.heightPixels
-        val guidelineBegin = (currentScreenSize * POSTER_SIZE_PERCENT).toInt()
-        binding.guideline.setGuidelineBegin(guidelineBegin)
+        val margin = (currentScreenSize * POSTER_SIZE_PERCENT).toInt()
+        binding.guideline.setGuidelineBegin(margin)
     }
 }
