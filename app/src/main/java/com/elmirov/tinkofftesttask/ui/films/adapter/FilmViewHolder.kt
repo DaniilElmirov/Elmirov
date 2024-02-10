@@ -19,7 +19,7 @@ class FilmViewHolder(
     private val binding = FilmItemBinding.bind(itemView)
 
     fun bind(film: Film) {
-        val genre = film.genres[0]
+        val genre = film.genres.first()
         val year = film.year
 
         with(binding) {

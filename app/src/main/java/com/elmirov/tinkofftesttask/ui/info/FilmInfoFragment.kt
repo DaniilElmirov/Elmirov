@@ -1,6 +1,7 @@
 package com.elmirov.tinkofftesttask.ui.info
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,8 +23,10 @@ import javax.inject.Inject
 class FilmInfoFragment : Fragment() {
 
     companion object {
+        private const val POSTER_SIZE_PERCENT = 0.68
 
         private const val FILM_ID = "film_id"
+
         fun newInstance(id: Int): FilmInfoFragment = FilmInfoFragment()
             .apply {
                 arguments = Bundle().apply {
@@ -103,6 +106,7 @@ class FilmInfoFragment : Fragment() {
     }
 
     private fun showContent(content: Film) {
+        setPosterRightSize()
         binding.progressBar.isVisible = false
         binding.error.isVisible = false
 
@@ -120,5 +124,11 @@ class FilmInfoFragment : Fragment() {
         binding.progressBar.isVisible = false
         binding.error.isVisible = true
         binding.film.isVisible = false
+    }
+
+    private fun setPosterRightSize() {
+        val currentScreenSize = Resources.getSystem().displayMetrics.heightPixels
+        val guidelineBegin = (currentScreenSize * POSTER_SIZE_PERCENT).toInt()
+        binding.guideline.setGuidelineBegin(guidelineBegin)
     }
 }
