@@ -5,4 +5,6 @@
     <string name="genre_with_year">%s (%d)</string>
     <string name="internet_error">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
     <string name="repeat">Повторить</string>
+    <string name="genres">Жанры: %s</string>
+    <string name="countries">Страны: %s</string>
 </resources>
