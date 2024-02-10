@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import com.elmirov.tinkofftesttask.TestTaskApplication
 import com.elmirov.tinkofftesttask.databinding.FragmentFilmsBinding
 import com.elmirov.tinkofftesttask.domain.entity.Film
@@ -17,6 +19,7 @@ import com.elmirov.tinkofftesttask.presentation.films.FilmsState
 import com.elmirov.tinkofftesttask.presentation.films.FilmsViewModel
 import com.elmirov.tinkofftesttask.ui.films.adapter.FilmAdapter
 import com.elmirov.tinkofftesttask.util.collectLifecycleFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FilmsFragment : Fragment() {
@@ -89,22 +92,22 @@ class FilmsFragment : Fragment() {
         binding.progressBar.isVisible = true
     }
 
-    private fun showContent(content: List<Film>) {
-        binding.progressBar.isVisible = false
-        binding.error.isVisible = false
-        binding.films.isVisible = true
-
+    private fun showContent(content: PagingData<Film>) {
         val filmAdapter = FilmAdapter(
             onClick = {
-                viewModel.openInfo(it.id)
+                viewModel.openInfo(it?.id ?: 301)
             },
             onLongClickListener = {
-                Log.d("TAGTAG", "${it.name} long")
+                Log.d("TAGTAG", "${it?.name} long")
             }
         )
-
         binding.films.adapter = filmAdapter
-        filmAdapter.submitList(content)
+        viewLifecycleOwner.lifecycleScope.launch {
+            filmAdapter.submitData(content)
+        }
+        binding.error.isVisible = false
+        binding.films.isVisible = true
+        binding.progressBar.isVisible = false
     }
 
     private fun showError() {

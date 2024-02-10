@@ -1,5 +1,6 @@
 package com.elmirov.tinkofftesttask.presentation.films
 
+import androidx.paging.PagingData
 import com.elmirov.tinkofftesttask.domain.entity.Film
 import com.elmirov.tinkofftesttask.presentation.ErrorType
 
@@ -14,6 +15,6 @@ sealed interface FilmsState {
     ) : FilmsState
 
     data class Content(
-        val content: List<Film>,
+        val content: PagingData<Film>,
     ) : FilmsState
 }

@@ -10,21 +10,21 @@ import com.elmirov.tinkofftesttask.domain.entity.Film
 
 class FilmViewHolder(
     parent: ViewGroup,
-    private val onClick: (Film) -> Unit,
-    private val onLongClickListener: (Film) -> Unit,
+    private val onClick: (Film?) -> Unit,
+    private val onLongClickListener: (Film?) -> Unit,
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.film_item, parent, false)
 ) {
 
     private val binding = FilmItemBinding.bind(itemView)
 
-    fun bind(film: Film) {
-        val genre = film.genres.first()
-        val year = film.year
+    fun bind(film: Film?) {
+        val genre = film?.genres?.first()
+        val year = film?.year
 
         with(binding) {
-            posterPreview.load(film.posterPreviewUrl)
-            name.text = film.name
+            posterPreview.load(film?.posterPreviewUrl)
+            name.text = film?.name
             genreWithYear.text = String.format(
                 itemView.context.getString(R.string.genre_with_year),
                 genre,

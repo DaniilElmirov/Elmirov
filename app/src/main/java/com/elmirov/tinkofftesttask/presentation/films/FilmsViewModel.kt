@@ -2,6 +2,7 @@ package com.elmirov.tinkofftesttask.presentation.films
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.elmirov.tinkofftesttask.domain.usecase.GetFilmsUseCase
 import com.elmirov.tinkofftesttask.navigation.router.FilmsRouter
 import com.elmirov.tinkofftesttask.presentation.ErrorType
@@ -31,8 +32,9 @@ class FilmsViewModel @Inject constructor(
         viewModelScope.launch(handler) {
             _state.value = FilmsState.Loading
 
-            val films = getFilmsUseCase()
-            _state.value = FilmsState.Content(films)
+            getFilmsUseCase().cachedIn(this@launch).collect {
+                _state.value = FilmsState.Content(it)
+            }
         }
     }
 
