@@ -11,6 +11,7 @@ cicerone = "7.1"
 retrofit = "2.9.0"
 interceptor = "4.11.0"
 coroutines = "1.7.0"
+coil = "2.5.0"
 ksp = "1.9.22-1.0.16"
 
 [libraries]
@@ -28,6 +29,7 @@ squareup-retrofit-converter = { group = "com.squareup.retrofit2", name = "conver
 okhttp-loggin-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "interceptor" }
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

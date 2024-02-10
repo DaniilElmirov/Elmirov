@@ -50,6 +50,8 @@ dependencies {
 	implementation(libs.dagger.core)
 	ksp(libs.dagger.compiler)
 
+	implementation(libs.coil)
+
 	implementation(libs.bundles.lifecycle)
 	implementation(libs.bundles.retrofit)
 	implementation(libs.bundles.coroutines)
