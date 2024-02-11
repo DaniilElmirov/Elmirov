@@ -10,7 +10,7 @@ interface FilmRepository {
 
     suspend fun getPopular(): Flow<PagingData<FilmPartial>>
 
-    suspend fun add(filmFull: FilmFull)
+    suspend fun add(filmPartial: FilmPartial)
 
-    suspend fun getFavorites(): List<FilmFull>
+    suspend fun getFavorites(): List<FilmPartial>
 }

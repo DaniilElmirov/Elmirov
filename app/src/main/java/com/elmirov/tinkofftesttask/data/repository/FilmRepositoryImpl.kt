@@ -2,7 +2,9 @@ package com.elmirov.tinkofftesttask.data.repository
 
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.elmirov.tinkofftesttask.data.datasource.LocalFilmDataSource
 import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
+import com.elmirov.tinkofftesttask.data.mapper.toDbModel
 import com.elmirov.tinkofftesttask.data.mapper.toEntity
 import com.elmirov.tinkofftesttask.di.annotation.DispatcherIo
 import com.elmirov.tinkofftesttask.domain.entity.FilmFull
@@ -16,6 +18,7 @@ import javax.inject.Inject
 
 class FilmRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteFilmDataSource,
+    private val localDataSource: LocalFilmDataSource,
     @DispatcherIo private val dispatcherIo: CoroutineDispatcher,
 ) : FilmRepository {
     override suspend fun getById(id: Int): FilmFull = withContext(dispatcherIo) {
@@ -30,11 +33,15 @@ class FilmRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun add(filmFull: FilmFull) {
-        TODO("Not yet implemented")
+    override suspend fun add(filmPartial: FilmPartial) {
+        withContext(dispatcherIo) {
+            localDataSource.add(filmPartial.toDbModel())
+        }
     }
 
-    override suspend fun getFavorites(): List<FilmFull> {
-        TODO("Not yet implemented")
+    override suspend fun getFavorites(): List<FilmPartial> = withContext(dispatcherIo) {
+        localDataSource.getAll().map {
+            it.toEntity()
+        }
     }
 }

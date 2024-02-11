@@ -1,5 +1,6 @@
 package com.elmirov.tinkofftesttask.data.mapper
 
+import com.elmirov.tinkofftesttask.data.local.model.FilmDbModel
 import com.elmirov.tinkofftesttask.data.remote.model.CountryDto
 import com.elmirov.tinkofftesttask.data.remote.model.FilmFullDto
 import com.elmirov.tinkofftesttask.data.remote.model.FilmPartialDto
@@ -27,23 +28,23 @@ fun FilmPartialDto.toEntity(): FilmPartial =
         genre = genresDto.first().toGenre()
     )
 
-//fun FilmDbModel.toEntity(): Film =
-//    Film(
-//        id = id,
-//        name = name,
-//        posterPreviewUrl = posterPreviewUrl,
-//        year = year,
-//        genres = listOf(this.genre)
-//    )
-//
-//fun Film.toDbModel(): FilmDbModel =
-//    FilmDbModel(
-//        id = id,
-//        name = name,
-//        posterPreviewUrl = posterPreviewUrl,
-//        year = year,
-//        genre = genres.first(),
-//    )
+fun FilmDbModel.toEntity(): FilmPartial =
+    FilmPartial(
+        id = id,
+        name = name,
+        posterPreviewUrl = posterPreviewUrl,
+        year = year,
+        genre = genre
+    )
+
+fun FilmPartial.toDbModel(): FilmDbModel =
+    FilmDbModel(
+        id = id,
+        name = name,
+        posterPreviewUrl = posterPreviewUrl,
+        year = year,
+        genre = genre,
+    )
 
 private fun GenreDto.toGenre(): String =
     genre
