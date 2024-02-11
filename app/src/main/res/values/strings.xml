@@ -2,8 +2,10 @@
     <string name="app_name">TinkoffTestTask</string>
 
     <string name="popular">Популярное</string>
+    <string name="favorites">Избранное</string>
     <string name="genre_with_year">%s (%d)</string>
     <string name="internet_error">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="local_error">Что-то пошло не так</string>
     <string name="repeat">Повторить</string>
     <string name="genres">Жанры: %s</string>
     <string name="countries">Страны: %s</string>
