@@ -1,15 +1,15 @@
 package com.elmirov.tinkofftesttask.domain.repository
 
 import androidx.paging.PagingData
-import com.elmirov.tinkofftesttask.domain.entity.Film
+import com.elmirov.tinkofftesttask.domain.entity.FilmFull
 import kotlinx.coroutines.flow.Flow
 
 interface FilmRepository {
-    suspend fun getById(id: Int): Film
+    suspend fun getById(id: Int): FilmFull
 
-    suspend fun getPopular(): Flow<PagingData<Film>>
+    suspend fun getPopular(): Flow<PagingData<FilmFull>>
 
-    suspend fun add(film: Film)
+    suspend fun add(filmFull: FilmFull)
 
-    suspend fun getFavorites(): List<Film>
+    suspend fun getFavorites(): List<FilmFull>
 }

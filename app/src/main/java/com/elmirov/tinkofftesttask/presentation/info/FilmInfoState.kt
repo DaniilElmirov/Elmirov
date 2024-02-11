@@ -1,6 +1,6 @@
 package com.elmirov.tinkofftesttask.presentation.info
 
-import com.elmirov.tinkofftesttask.domain.entity.Film
+import com.elmirov.tinkofftesttask.domain.entity.FilmFull
 import com.elmirov.tinkofftesttask.presentation.ErrorType
 
 sealed interface FilmInfoState {
@@ -14,6 +14,6 @@ sealed interface FilmInfoState {
     ) : FilmInfoState
 
     data class Content(
-        val content: Film,
+        val content: FilmFull,
     ) : FilmInfoState
 }

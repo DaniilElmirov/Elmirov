@@ -13,7 +13,7 @@ import coil.load
 import com.elmirov.tinkofftesttask.R
 import com.elmirov.tinkofftesttask.TestTaskApplication
 import com.elmirov.tinkofftesttask.databinding.FragmentFilmInfoBinding
-import com.elmirov.tinkofftesttask.domain.entity.Film
+import com.elmirov.tinkofftesttask.domain.entity.FilmFull
 import com.elmirov.tinkofftesttask.presentation.ViewModelFactory
 import com.elmirov.tinkofftesttask.presentation.info.FilmInfoState
 import com.elmirov.tinkofftesttask.presentation.info.FilmInfoViewModel
@@ -112,7 +112,7 @@ class FilmInfoFragment : Fragment() {
         }
     }
 
-    private fun showContent(content: Film) {
+    private fun showContent(content: FilmFull) {
         setupGuideline()
 
         binding.apply {
