@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.elmirov.tinkofftesttask.domain.entity.Film
-import com.elmirov.tinkofftesttask.domain.usecase.GetFilmsUseCase
+import com.elmirov.tinkofftesttask.domain.usecase.GetPopularFilmsUseCase
 import com.elmirov.tinkofftesttask.navigation.router.FilmsRouter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FilmsViewModel @Inject constructor(
-    private val getFilmsUseCase: GetFilmsUseCase,
+    private val getPopularFilmsUseCase: GetPopularFilmsUseCase,
     private val router: FilmsRouter,
 ) : ViewModel() {
 
@@ -26,7 +26,7 @@ class FilmsViewModel @Inject constructor(
 
     fun loadFilms() {
         viewModelScope.launch {
-            getFilmsUseCase().cachedIn(viewModelScope).collect {
+            getPopularFilmsUseCase().cachedIn(viewModelScope).collect {
                 _films.value = it
             }
         }

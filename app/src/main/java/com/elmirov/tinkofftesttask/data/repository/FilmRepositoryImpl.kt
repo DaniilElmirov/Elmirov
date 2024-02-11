@@ -21,12 +21,19 @@ class FilmRepositoryImpl @Inject constructor(
         remoteDataSource.getById(id).toEntity()
     }
 
-
-    override suspend fun getList(): Flow<PagingData<Film>> = withContext(dispatcherIo) {
+    override suspend fun getPopular(): Flow<PagingData<Film>> = withContext(dispatcherIo) {
         remoteDataSource.getList().map { pagingData ->
             pagingData.map {
                 it.toEntity()
             }
         }
+    }
+
+    override suspend fun add(film: Film) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getFavorites(): List<Film> {
+        TODO("Not yet implemented")
     }
 }

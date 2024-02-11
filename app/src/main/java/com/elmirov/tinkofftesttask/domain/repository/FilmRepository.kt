@@ -7,5 +7,9 @@ import kotlinx.coroutines.flow.Flow
 interface FilmRepository {
     suspend fun getById(id: Int): Film
 
-    suspend fun getList(): Flow<PagingData<Film>>
+    suspend fun getPopular(): Flow<PagingData<Film>>
+
+    suspend fun add(film: Film)
+
+    suspend fun getFavorites(): List<Film>
 }
