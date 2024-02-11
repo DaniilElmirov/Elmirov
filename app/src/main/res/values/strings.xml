@@ -9,4 +9,5 @@
     <string name="repeat">Повторить</string>
     <string name="genres">Жанры: %s</string>
     <string name="countries">Страны: %s</string>
+    <string name="added">%s добавлен в избранное</string>
 </resources>
