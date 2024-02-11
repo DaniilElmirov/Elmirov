@@ -21,7 +21,7 @@ class FilmInfoViewModel @Inject constructor(
         _state.value = FilmInfoState.Error(ErrorType.INTERNET)
     }
 
-    fun getFilmInfo(id: Int) {
+    fun loadFilm(id: Int) {
         viewModelScope.launch(handler) {
             _state.value = FilmInfoState.Loading
 

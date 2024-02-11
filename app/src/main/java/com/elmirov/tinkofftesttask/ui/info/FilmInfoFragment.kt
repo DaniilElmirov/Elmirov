@@ -84,7 +84,7 @@ class FilmInfoFragment : Fragment() {
 
     private fun loadFilmInfo() {
         val filmId = requireArguments().getInt(FILM_ID)
-        viewModel.getFilmInfo(filmId)
+        viewModel.loadFilm(filmId)
     }
 
     private fun applyState() {
