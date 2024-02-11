@@ -1,8 +1,12 @@
 package com.elmirov.tinkofftesttask.di.module
 
 import android.content.Context
+import androidx.room.Room
+import com.elmirov.tinkofftesttask.data.datasource.LocalFilmDataSource
+import com.elmirov.tinkofftesttask.data.datasource.LocalFilmDataSourceImpl
 import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
 import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSourceImpl
+import com.elmirov.tinkofftesttask.data.local.database.FavoriteFilmsDao
 import com.elmirov.tinkofftesttask.data.local.database.FavoritesDatabase
 import com.elmirov.tinkofftesttask.data.remote.api.KeyInterceptor
 import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
@@ -16,8 +20,6 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import androidx.room.Room
-import com.elmirov.tinkofftesttask.data.local.database.FavoriteFilmsDao
 
 @Module(includes = [BindDataModule::class])
 class DataModule {
@@ -72,4 +74,8 @@ interface BindDataModule {
     @Binds
     @ApplicationScope
     fun bindRemoteFilmDataSource(impl: RemoteFilmDataSourceImpl): RemoteFilmDataSource
+
+    @Binds
+    @ApplicationScope
+    fun bindLocalFilmDataSource(impl: LocalFilmDataSourceImpl): LocalFilmDataSource
 }
