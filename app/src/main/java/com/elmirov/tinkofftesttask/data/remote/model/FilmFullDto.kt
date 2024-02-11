@@ -2,13 +2,12 @@ package com.elmirov.tinkofftesttask.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class FilmDto(
+data class FilmFullDto(
     @SerializedName("kinopoiskId") val id: Int,
     @SerializedName("nameRu") val name: String,
     val posterUrl: String,
-    @SerializedName("posterUrlPreview") val posterPreviewUrl: String,
     val year: Int,
-    val description: String?, //TODO() возможно стоит использовать разные сущности для списка и по id
+    val description: String,
     @SerializedName("genres") val genresDto: List<GenreDto>,
     @SerializedName("countries") val countriesDto: List<CountryDto>,
 )

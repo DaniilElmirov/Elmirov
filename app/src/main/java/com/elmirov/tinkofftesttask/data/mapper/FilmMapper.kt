@@ -1,19 +1,19 @@
 package com.elmirov.tinkofftesttask.data.mapper
 
 import com.elmirov.tinkofftesttask.data.remote.model.CountryDto
-import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmFullDto
 import com.elmirov.tinkofftesttask.data.remote.model.FilmPartialDto
 import com.elmirov.tinkofftesttask.data.remote.model.GenreDto
 import com.elmirov.tinkofftesttask.domain.entity.FilmFull
 import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
 
-fun FilmDto.toEntity(): FilmFull =
+fun FilmFullDto.toEntity(): FilmFull =
     FilmFull(
         id = id,
         name = name,
         posterUrl = posterUrl,
         year = year,
-        description = description ?: "",
+        description = description,
         genres = genresDto.map { it.toGenre() },
         countries = countriesDto.map { it.toCountry() },
     )

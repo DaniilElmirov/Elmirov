@@ -1,6 +1,6 @@
 package com.elmirov.tinkofftesttask.data.remote.api
 
-import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmFullDto
 import com.elmirov.tinkofftesttask.data.remote.model.FilmsDto
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,7 +15,7 @@ interface KinopoiskApi {
     @GET("api/v2.2/films/{id}")
     suspend fun getById(
         @Path("id") id: Int,
-    ): FilmDto
+    ): FilmFullDto
 
     @GET("api/v2.2/films/collections?type=TOP_250_MOVIES")
     suspend fun getFilms(
