@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
+import com.elmirov.tinkofftesttask.domain.usecase.AddFavoriteFilmUseCase
 import com.elmirov.tinkofftesttask.domain.usecase.GetPopularFilmsUseCase
 import com.elmirov.tinkofftesttask.navigation.router.FilmsRouter
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +15,7 @@ import javax.inject.Inject
 
 class FilmsViewModel @Inject constructor(
     private val getPopularFilmsUseCase: GetPopularFilmsUseCase,
+    private val addFavoriteFilmUseCase: AddFavoriteFilmUseCase,
     private val router: FilmsRouter,
 ) : ViewModel() {
 
@@ -29,6 +31,12 @@ class FilmsViewModel @Inject constructor(
             getPopularFilmsUseCase().cachedIn(viewModelScope).collect {
                 _films.value = it
             }
+        }
+    }
+
+    fun addToFavorites(filmPartial: FilmPartial) {
+        viewModelScope.launch {
+            addFavoriteFilmUseCase(filmPartial)
         }
     }
 
