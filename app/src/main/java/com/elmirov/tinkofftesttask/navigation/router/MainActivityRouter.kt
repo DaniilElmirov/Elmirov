@@ -5,13 +5,13 @@ import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
 interface MainActivityRouter {
-    fun openFilms()
+    fun openPopular()
 }
 
 class MainActivityRouterImpl @Inject constructor(
     private val router: Router,
 ) : MainActivityRouter {
-    override fun openFilms() {
+    override fun openPopular() {
         router.newRootScreen(getFilmsScreen())
     }
 }

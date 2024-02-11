@@ -8,7 +8,7 @@ class MainActivityViewModel @Inject constructor(
     private val router: MainActivityRouter,
 ) : ViewModel() {
 
-    fun navigate() {
-        router.openFilms()
+    fun openPopular() {
+        router.openPopular()
     }
 }
