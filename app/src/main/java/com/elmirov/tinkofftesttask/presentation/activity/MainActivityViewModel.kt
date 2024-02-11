@@ -11,4 +11,8 @@ class MainActivityViewModel @Inject constructor(
     fun openPopular() {
         router.openPopular()
     }
+
+    fun openFavorites() {
+        router.openFavorites()
+    }
 }
