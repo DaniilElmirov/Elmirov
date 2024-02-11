@@ -77,8 +77,14 @@ class FilmInfoFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        binding.repeat.setOnClickListener {
-            loadFilmInfo()
+        binding.apply {
+            repeat.setOnClickListener {
+                loadFilmInfo()
+            }
+
+            arrowBack.setOnClickListener {
+                viewModel.backToFilms()
+            }
         }
     }
 
