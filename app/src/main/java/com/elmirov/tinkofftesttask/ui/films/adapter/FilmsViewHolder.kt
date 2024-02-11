@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.elmirov.tinkofftesttask.R
 import com.elmirov.tinkofftesttask.databinding.FilmItemBinding
 import com.elmirov.tinkofftesttask.domain.entity.Film
@@ -24,7 +25,9 @@ class FilmsViewHolder(
             val year = film.year
 
             binding.apply {
-                posterPreview.load(film.posterPreviewUrl)
+                posterPreview.load(film.posterPreviewUrl) {
+                    transformations(RoundedCornersTransformation(12f))
+                }
                 name.text = film.name
                 genreWithYear.text = String.format(
                     itemView.context.getString(R.string.genre_with_year),

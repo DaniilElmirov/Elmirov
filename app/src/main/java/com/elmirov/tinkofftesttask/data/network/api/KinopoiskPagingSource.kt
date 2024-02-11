@@ -21,19 +21,19 @@ class KinopoiskPagingSource @Inject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Film> {
+        return try {
+            val page = params.key ?: INITIAL_PAGE
 
-        val page = params.key ?: INITIAL_PAGE
-
-        val response = api.getFilms(page)
-        val lastPage = response.lastPage
-
-        return if (response.films.isNotEmpty()) {
+            val response = api.getFilms(page)
             val films = response.toEntity()
+            val lastPage = response.lastPage
+
             val prevKey = if (page == INITIAL_PAGE) null else page - 1
             val nextKey = if (page == lastPage) null else page + 1
+
             LoadResult.Page(films, prevKey, nextKey)
-        } else {
-            LoadResult.Error(Throwable())
+        } catch (e: Exception) {
+            LoadResult.Error(e)
         }
     }
 }
