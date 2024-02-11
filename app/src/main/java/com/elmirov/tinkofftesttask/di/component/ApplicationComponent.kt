@@ -6,7 +6,7 @@ import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
 import com.elmirov.tinkofftesttask.di.module.DataModule
 import com.elmirov.tinkofftesttask.di.module.NavigationModule
 import com.elmirov.tinkofftesttask.di.module.ViewModelModule
-import com.elmirov.tinkofftesttask.presentation.activity.MainActivity
+import com.elmirov.tinkofftesttask.ui.activity.MainActivity
 import com.elmirov.tinkofftesttask.ui.favorite.FavoritesFragment
 import com.elmirov.tinkofftesttask.ui.films.FilmsFragment
 import com.elmirov.tinkofftesttask.ui.info.FilmInfoFragment
