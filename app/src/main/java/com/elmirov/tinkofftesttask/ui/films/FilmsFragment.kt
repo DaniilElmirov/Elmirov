@@ -14,7 +14,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.elmirov.tinkofftesttask.TestTaskApplication
 import com.elmirov.tinkofftesttask.databinding.FragmentFilmsBinding
-import com.elmirov.tinkofftesttask.domain.entity.FilmFull
+import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
 import com.elmirov.tinkofftesttask.presentation.ViewModelFactory
 import com.elmirov.tinkofftesttask.presentation.films.FilmsViewModel
 import com.elmirov.tinkofftesttask.ui.films.adapter.FilmsAdapter
@@ -93,7 +93,7 @@ class FilmsFragment : Fragment() {
         }
     }
 
-    private fun setupAdapter(content: PagingData<FilmFull>) {
+    private fun setupAdapter(content: PagingData<FilmPartial>) {
         binding.contentContainer.adapter = filmsAdapter.withLoadStateFooter(
             FilmsLoadStateAdapter(
                 onRepeatClick = {

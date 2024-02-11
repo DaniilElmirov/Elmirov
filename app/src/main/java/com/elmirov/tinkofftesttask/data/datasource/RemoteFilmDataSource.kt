@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
 import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskPagingSource
 import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmPartialDto
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ interface RemoteFilmDataSource {
 
     suspend fun getById(id: Int): FilmDto
 
-    suspend fun getList(): Flow<PagingData<FilmDto>>
+    suspend fun getList(): Flow<PagingData<FilmPartialDto>>
 }
 
 class RemoteFilmDataSourceImpl @Inject constructor(
@@ -22,7 +23,7 @@ class RemoteFilmDataSourceImpl @Inject constructor(
     override suspend fun getById(id: Int): FilmDto =
         api.getById(id)
 
-    override suspend fun getList(): Flow<PagingData<FilmDto>> = Pager(
+    override suspend fun getList(): Flow<PagingData<FilmPartialDto>> = Pager(
         config = PagingConfig(pageSize = KinopoiskApi.MAX_PAGE_SIZE),
         pagingSourceFactory = {
             KinopoiskPagingSource(api)

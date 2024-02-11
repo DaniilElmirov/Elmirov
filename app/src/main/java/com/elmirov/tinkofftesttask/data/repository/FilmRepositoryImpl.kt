@@ -6,6 +6,7 @@ import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
 import com.elmirov.tinkofftesttask.data.mapper.toEntity
 import com.elmirov.tinkofftesttask.di.annotation.DispatcherIo
 import com.elmirov.tinkofftesttask.domain.entity.FilmFull
+import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
 import com.elmirov.tinkofftesttask.domain.repository.FilmRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ class FilmRepositoryImpl @Inject constructor(
         remoteDataSource.getById(id).toEntity()
     }
 
-    override suspend fun getPopular(): Flow<PagingData<FilmFull>> = withContext(dispatcherIo) {
+    override suspend fun getPopular(): Flow<PagingData<FilmPartial>> = withContext(dispatcherIo) {
         remoteDataSource.getList().map { pagingData ->
             pagingData.map {
                 it.toEntity()

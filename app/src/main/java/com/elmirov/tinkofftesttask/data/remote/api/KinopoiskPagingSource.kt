@@ -2,24 +2,24 @@ package com.elmirov.tinkofftesttask.data.remote.api
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmPartialDto
 import javax.inject.Inject
 
 class KinopoiskPagingSource @Inject constructor(
     private val api: KinopoiskApi,
-) : PagingSource<Int, FilmDto>() {
+) : PagingSource<Int, FilmPartialDto>() {
 
     private companion object {
         private const val INITIAL_PAGE = 1
     }
 
-    override fun getRefreshKey(state: PagingState<Int, FilmDto>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, FilmPartialDto>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         val anchorPage = state.closestPageToPosition(anchorPosition) ?: return null
         return anchorPage.prevKey?.plus(1) ?: anchorPage.nextKey?.minus(1)
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FilmDto> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FilmPartialDto> {
         return try {
             val page = params.key ?: INITIAL_PAGE
 

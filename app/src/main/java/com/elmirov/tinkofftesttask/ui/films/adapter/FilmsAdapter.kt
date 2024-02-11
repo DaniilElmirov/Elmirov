@@ -2,12 +2,12 @@ package com.elmirov.tinkofftesttask.ui.films.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.elmirov.tinkofftesttask.domain.entity.FilmFull
+import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
 
 class FilmsAdapter(
-    private val onClick: (FilmFull) -> Unit,
-    private val onLongClickListener: (FilmFull) -> Unit,
-) : PagingDataAdapter<FilmFull, FilmsViewHolder>(FilmItemDiffCallback()) {
+    private val onClick: (FilmPartial) -> Unit,
+    private val onLongClickListener: (FilmPartial) -> Unit,
+) : PagingDataAdapter<FilmPartial, FilmsViewHolder>(FilmItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder =
         FilmsViewHolder(parent, onClick, onLongClickListener)
 
