@@ -1,6 +1,8 @@
 package com.elmirov.tinkofftesttask.di.module
 
 import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
+import com.elmirov.tinkofftesttask.navigation.router.FilmInfoRouter
+import com.elmirov.tinkofftesttask.navigation.router.FilmInfoRouterImpl
 import com.elmirov.tinkofftesttask.navigation.router.FilmsRouter
 import com.elmirov.tinkofftesttask.navigation.router.FilmsRouterImpl
 import com.elmirov.tinkofftesttask.navigation.router.MainActivityRouter
@@ -35,4 +37,8 @@ interface BindNavigationModule {
     @Binds
     @ApplicationScope
     fun bindFilmsRouter(impl: FilmsRouterImpl): FilmsRouter
+
+    @Binds
+    @ApplicationScope
+    fun bindFilmInfoRouter(impl: FilmInfoRouterImpl): FilmInfoRouter
 }
