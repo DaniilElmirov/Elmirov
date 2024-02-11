@@ -1,5 +1,7 @@
 package com.elmirov.tinkofftesttask.di.module
 
+import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
+import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSourceImpl
 import com.elmirov.tinkofftesttask.data.remote.api.KeyInterceptor
 import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
 import com.elmirov.tinkofftesttask.data.repository.FilmRepositoryImpl
@@ -48,4 +50,8 @@ interface BindDataModule {
     @Binds
     @ApplicationScope
     fun bindFilmRepository(impl: FilmRepositoryImpl): FilmRepository
+
+    @Binds
+    @ApplicationScope
+    fun bindRemoteFilmDataSource(impl: RemoteFilmDataSourceImpl): RemoteFilmDataSource
 }

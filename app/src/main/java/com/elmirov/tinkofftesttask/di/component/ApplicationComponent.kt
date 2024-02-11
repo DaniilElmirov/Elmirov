@@ -4,6 +4,7 @@ import android.content.Context
 import com.elmirov.tinkofftesttask.TestTaskApplication
 import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
 import com.elmirov.tinkofftesttask.di.module.DataModule
+import com.elmirov.tinkofftesttask.di.module.DispatcherModule
 import com.elmirov.tinkofftesttask.di.module.NavigationModule
 import com.elmirov.tinkofftesttask.di.module.ViewModelModule
 import com.elmirov.tinkofftesttask.ui.activity.MainActivity
@@ -19,6 +20,7 @@ import dagger.Component
         DataModule::class,
         ViewModelModule::class,
         NavigationModule::class,
+        DispatcherModule::class,
     ]
 )
 interface ApplicationComponent {

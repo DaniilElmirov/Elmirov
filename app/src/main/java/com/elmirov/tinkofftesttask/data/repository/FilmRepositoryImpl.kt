@@ -1,26 +1,32 @@
 package com.elmirov.tinkofftesttask.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.map
+import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
 import com.elmirov.tinkofftesttask.data.mapper.toEntity
-import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
-import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskPagingSource
+import com.elmirov.tinkofftesttask.di.annotation.DispatcherIo
 import com.elmirov.tinkofftesttask.domain.entity.Film
 import com.elmirov.tinkofftesttask.domain.repository.FilmRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FilmRepositoryImpl @Inject constructor(
-    private val api: KinopoiskApi,
+    private val remoteDataSource: RemoteFilmDataSource,
+    @DispatcherIo private val dispatcherIo: CoroutineDispatcher,
 ) : FilmRepository {
-    override suspend fun getById(id: Int): Film =
-        api.getById(id).toEntity()
+    override suspend fun getById(id: Int): Film = withContext(dispatcherIo) {
+        remoteDataSource.getById(id).toEntity()
+    }
 
-    override suspend fun getList(): Flow<PagingData<Film>> = Pager(
-        config = PagingConfig(pageSize = KinopoiskApi.MAX_PAGE_SIZE),
-        pagingSourceFactory = {
-            KinopoiskPagingSource(api)
+
+    override suspend fun getList(): Flow<PagingData<Film>> = withContext(dispatcherIo) {
+        remoteDataSource.getList().map { pagingData ->
+            pagingData.map {
+                it.toEntity()
+            }
         }
-    ).flow
+    }
 }
