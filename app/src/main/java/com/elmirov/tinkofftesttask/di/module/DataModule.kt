@@ -1,7 +1,9 @@
 package com.elmirov.tinkofftesttask.di.module
 
+import android.content.Context
 import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSource
 import com.elmirov.tinkofftesttask.data.datasource.RemoteFilmDataSourceImpl
+import com.elmirov.tinkofftesttask.data.local.database.FavoritesDatabase
 import com.elmirov.tinkofftesttask.data.remote.api.KeyInterceptor
 import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
 import com.elmirov.tinkofftesttask.data.repository.FilmRepositoryImpl
@@ -14,6 +16,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import androidx.room.Room
+import com.elmirov.tinkofftesttask.data.local.database.FavoriteFilmsDao
 
 @Module(includes = [BindDataModule::class])
 class DataModule {
@@ -43,6 +47,20 @@ class DataModule {
     @ApplicationScope
     fun provideKinopoiskApi(retrofit: Retrofit): KinopoiskApi =
         retrofit.create()
+
+    @ApplicationScope
+    @Provides
+    fun provideFavoritesDatabase(context: Context): FavoritesDatabase =
+        Room.databaseBuilder(
+            context = context,
+            klass = FavoritesDatabase::class.java,
+            FavoritesDatabase.DATABASE_NAME
+        ).build()
+
+    @ApplicationScope
+    @Provides
+    fun provideFavoriteCitiesDao(database: FavoritesDatabase): FavoriteFilmsDao =
+        database.favoriteFilmsDao()
 }
 
 @Module
