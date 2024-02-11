@@ -112,8 +112,7 @@ class FilmsFragment : Fragment() {
     private fun applyAdapterState() {
         filmsAdapter.addLoadStateListener { state ->
             binding.apply {
-                contentContainer.isVisible =
-                    state.refresh != LoadState.Loading && state.refresh !is LoadState.Error
+                contentContainer.isVisible = state.refresh is LoadState.NotLoading
                 progressBar.isVisible = state.refresh == LoadState.Loading
                 error.isVisible = state.refresh is LoadState.Error
             }
