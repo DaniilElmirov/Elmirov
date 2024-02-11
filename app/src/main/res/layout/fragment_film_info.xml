@@ -63,7 +63,8 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="0dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintGuide_begin="300dp" />
 
             <ImageView
                 android:id="@+id/poster"
@@ -76,6 +77,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_error" />
+
+            <ImageButton
+                android:id="@+id/arrow_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                android:padding="@dimen/padding_12"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/name"
