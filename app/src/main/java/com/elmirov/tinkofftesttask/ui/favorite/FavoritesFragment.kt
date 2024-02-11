@@ -59,12 +59,19 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnClickListeners()
         applyState()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun setOnClickListeners() {
+        binding.repeat.setOnClickListener {
+            viewModel.loadFilms()
+        }
     }
 
     private fun applyState() {
