@@ -8,6 +8,7 @@ import coil.transform.RoundedCornersTransformation
 import com.elmirov.tinkofftesttask.R
 import com.elmirov.tinkofftesttask.databinding.FilmItemBinding
 import com.elmirov.tinkofftesttask.domain.entity.FilmPartial
+import java.util.Locale
 
 class FilmsViewHolder(
     parent: ViewGroup,
@@ -21,7 +22,14 @@ class FilmsViewHolder(
 
     fun bind(filmPartial: FilmPartial?) {
         filmPartial?.let {
-            val genre = filmPartial.genre
+
+            val genre = filmPartial.genre.replaceFirstChar {
+                if (it.isLowerCase())
+                    it.titlecase(Locale.getDefault())
+                else
+                    it.toString()
+            }
+
             val year = filmPartial.year
 
             binding.apply {
