@@ -1,4 +1,4 @@
-package com.elmirov.tinkofftesttask.data.network.api
+package com.elmirov.tinkofftesttask.data.remote.api
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

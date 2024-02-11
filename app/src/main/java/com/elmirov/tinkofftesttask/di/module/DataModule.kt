@@ -1,7 +1,7 @@
 package com.elmirov.tinkofftesttask.di.module
 
-import com.elmirov.tinkofftesttask.data.network.api.KeyInterceptor
-import com.elmirov.tinkofftesttask.data.network.api.KinopoiskApi
+import com.elmirov.tinkofftesttask.data.remote.api.KeyInterceptor
+import com.elmirov.tinkofftesttask.data.remote.api.KinopoiskApi
 import com.elmirov.tinkofftesttask.data.repository.FilmRepositoryImpl
 import com.elmirov.tinkofftesttask.di.annotation.ApplicationScope
 import com.elmirov.tinkofftesttask.domain.repository.FilmRepository

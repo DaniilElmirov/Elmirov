@@ -1,9 +1,9 @@
 package com.elmirov.tinkofftesttask.data.mapper
 
-import com.elmirov.tinkofftesttask.data.network.model.CountryDto
-import com.elmirov.tinkofftesttask.data.network.model.FilmDto
-import com.elmirov.tinkofftesttask.data.network.model.FilmsDto
-import com.elmirov.tinkofftesttask.data.network.model.GenreDto
+import com.elmirov.tinkofftesttask.data.remote.model.CountryDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmsDto
+import com.elmirov.tinkofftesttask.data.remote.model.GenreDto
 import com.elmirov.tinkofftesttask.domain.entity.Film
 
 fun FilmsDto.toEntity(): List<Film> =

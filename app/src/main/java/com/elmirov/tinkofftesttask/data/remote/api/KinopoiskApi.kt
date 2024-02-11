@@ -1,7 +1,7 @@
-package com.elmirov.tinkofftesttask.data.network.api
+package com.elmirov.tinkofftesttask.data.remote.api
 
-import com.elmirov.tinkofftesttask.data.network.model.FilmDto
-import com.elmirov.tinkofftesttask.data.network.model.FilmsDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmDto
+import com.elmirov.tinkofftesttask.data.remote.model.FilmsDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

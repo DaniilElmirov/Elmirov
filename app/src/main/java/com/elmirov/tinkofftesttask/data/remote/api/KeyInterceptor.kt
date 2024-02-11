@@ -1,4 +1,4 @@
-package com.elmirov.tinkofftesttask.data.network.api
+package com.elmirov.tinkofftesttask.data.remote.api
 
 import okhttp3.Interceptor
 import okhttp3.Response

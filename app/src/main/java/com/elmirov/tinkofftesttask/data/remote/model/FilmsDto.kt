@@ -1,4 +1,4 @@
-package com.elmirov.tinkofftesttask.data.network.model
+package com.elmirov.tinkofftesttask.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
