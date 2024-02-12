@@ -19,6 +19,6 @@ class MainActivityRouterImpl @Inject constructor(
     }
 
     override fun openFavorites() {
-        router.newRootScreen(getFavoritesScreen())
+        router.navigateTo(getFavoritesScreen())
     }
 }
