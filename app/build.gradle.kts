@@ -3,6 +3,7 @@ plugins {
 	alias(libs.plugins.androidApplication)
 	alias(libs.plugins.kotlinAndroid)
 	alias(libs.plugins.ksp)
+	alias(libs.plugins.junit)
 }
 
 android {
@@ -60,4 +61,5 @@ dependencies {
 	implementation(libs.bundles.lifecycle)
 	implementation(libs.bundles.retrofit)
 	implementation(libs.bundles.coroutines)
+	testImplementation(libs.bundles.unit.tests)
 }
